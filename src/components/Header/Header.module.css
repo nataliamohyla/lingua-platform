@@ -1,7 +1,71 @@
 .header{
     display: flex;
     flex-direction: row;
-    background-color: rgb(27, 103, 147);
+    align-items: center;
+      position: relative;
+       justify-content: center;
 height: 48px;
 gap: 300px;
+background-color: white;
+}
+.logo{
+    align-items: center;
+      position: absolute;
+   left: 28px;
+}
+.ukraine{
+    margin: 0 8px;
+    padding: 2px;
+}
+.nav{
+      display: flex;
+    flex-direction: row;
+    gap: 30px;
+
+}
+.nav a {
+ 
+text-decoration: none;
+font-weight: 300;
+font-size: 18px;
+line-height: 125%;
+color: #121417;
+}
+
+.nav a:hover {
+  color:  #ec540d;      
+}
+.nav a.active {
+  color: #ec540d;
+  
+}
+.blockbutton{
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    position: absolute;
+    right: 30px;
+}
+.login{
+    border: none;
+    background-color: transparent;
+    font-size: 18px;
+    line-height: 125%;
+color: #121417;
+}
+.icon{
+    margin-left: 8px;
+}
+.button{
+color: aliceblue;
+border-radius: 12px;
+padding: 14px 39px;
+width: 166px;
+height: 48px;
+background-color:  #121417;
+font-weight: 700;
+font-size: 16px;
+line-height: 125%;
+color: #fff;
+
 }

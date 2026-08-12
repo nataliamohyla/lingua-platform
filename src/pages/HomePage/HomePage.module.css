@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
    margin: 6px;
-    background-color: antiquewhite;
+
     margin-top: 80px;
 
 }
@@ -10,13 +10,16 @@
     display: flex;
     align-items: flex-start;
    margin: 36px;
-  
+   
 }
 .block{
     display: flex;
     flex-direction: column;
    padding: 30px 240px ; 
-    width: 720px;
+   border-radius: 30px;
+       background-color:  #f8f8f8;
+        width: 720px;
+        height: 468px;
 }
 .headline{
     color: rgb(25, 31, 36);
@@ -32,7 +35,7 @@
 .word{
     font-style: italic;
 font-weight: 400;
-background-color: rgba(203, 141, 91, 0.693);
+background-color: #FBE9BA;
 }
 .imagen{
     border-radius: 8px;
