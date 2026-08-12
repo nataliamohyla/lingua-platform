@@ -1,0 +1,7 @@
+.header{
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(27, 103, 147);
+height: 48px;
+gap: 300px;
+}
