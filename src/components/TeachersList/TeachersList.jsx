@@ -8,35 +8,19 @@ function TeachersList() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    console.log("useEffect started");
-
     const loadTeachers = async () => {
       try {
-        console.log("before getTeachers");
-
         const data = await getTeachers();
-
-        console.log("teachers received:", data);
-
         setTeachers(data);
       } catch (error) {
-        console.error("getTeachers error:", error);
         setError(error.message);
       } finally {
-        console.log("finally");
         setLoading(false);
       }
     };
 
     loadTeachers();
   }, []);
-
-  console.log("render:", {
-    loading,
-    teachers,
-    error,
-  });
-
   if (loading) {
     return <p>Loading teachers...</p>;
   }
@@ -44,47 +28,76 @@ function TeachersList() {
   if (error) {
     return <p>Error: {error}</p>;
   }
+return (
+  <div className={styles.list}>
+    {teachers.map((teacher) => (
+      <article key={teacher.id} className={styles.item}>
+        <img
+          src={teacher.avatar_url}
+          alt={`${teacher.name} ${teacher.surname}`}
+          className={styles.img}
+        />
 
-  return (
-    <div className={styles.list}>
-      <ul>
-        {teachers.map((teacher) => (
-          <li key={teacher.id}>
-            <img
-              src={teacher.avatar_url}
-              alt={teacher.name}
-            />
+        <div className={styles.content}>
+          <div className={styles.topRow}>
+            <div>
+              <p className={styles.label}>Languages</p>
 
-            <h2>{teacher.name}</h2>
-
-            <div className={styles.ratingList}>
-              <span>⭐ {teacher.rating}</span>
-              <span>Lessons done: {teacher.lessons_done}</span>
-              <span>${teacher.price_per_hour}/hour</span>
+              <h2 className={styles.name}>
+                {teacher.name} {teacher.surname}
+              </h2>
             </div>
 
-            <p>
-              Speaks: {teacher.languages?.join(", ")}
-            </p>
+            <div className={styles.stats}>
+              <span>◉ Lessons online</span>
+              <span>Lessons done: {teacher.lessons_done}</span>
+              <span>⭐ Rating: {teacher.rating}</span>
+              <span>
+                Price / 1 hour: ${teacher.price_per_hour}
+              </span>
+            </div>
 
-            <p>
-              Lesson info: {teacher.lesson_info}
-            </p>
+            <button
+              type="button"
+              className={styles.favoriteButton}
+              aria-label="Add teacher to favorites"
+            >
+              ♡
+            </button>
+          </div>
 
-            <p>
-              Conditions: {teacher.conditions?.join(", ")}
-            </p>
+          <p>
+            <span className={styles.label}>Speaks:</span>{" "}
+            {teacher.languages?.join(", ")}
+          </p>
 
-            <ul>
-              {teacher.levels?.map((level) => (
-                <li key={level}>{level}</li>
-              ))}
-            </ul>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
+          <p>
+            <span className={styles.label}>Lesson info:</span>{" "}
+            {teacher.lesson_info}
+          </p>
+
+          <p>
+            <span className={styles.label}>Conditions:</span>{" "}
+            {teacher.conditions?.join(", ")}
+          </p>
+
+          <button type="button" className={styles.readMore}>
+            Read more
+          </button>
+
+          <ul className={styles.levels}>
+            {teacher.levels?.map((level) => (
+              <li key={level} className={styles.level}>
+                {level}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </article>
+    ))}
+  </div>
+);
+  
+};
 
 export default TeachersList;
