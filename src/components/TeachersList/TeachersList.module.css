@@ -19,3 +19,8 @@ background: #f4c84a;
 border: none;
 margin: 0 auto;
 }
+.noResults{
+  text-align: center;
+  color:  red;
+  margin: 0 auto;
+}

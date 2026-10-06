@@ -1,0 +1,13 @@
+.filterbar{
+    display: flex;
+    gap: 20px;
+    background-color: rgb(251, 246, 246);
+    padding: 8px;
+}
+.select{
+    padding: 8px;
+    border-radius: 8px;
+    fill: aliceblue;
+    border: 1px solid rgb(243, 241, 241);
+
+}
