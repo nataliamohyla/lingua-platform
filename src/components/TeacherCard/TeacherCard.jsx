@@ -63,12 +63,14 @@ function TeacherCard({ teacher }) {
       {teacher.reviews?.map((review, index) => (
         <div key={index}>
           <p>
-            {review.reviewer_name} ⭐ {review.reviewer_rating}
+            {review.reviewer_name} ⭐ {review.reviewer_rating}.0
           </p>
 
           <p>{review.comment}</p>
+        
         </div>
       ))}
+                  <button type="button" className={styles.bookbutton} >Book leson</button>
     </div>
   </div>
 )}
