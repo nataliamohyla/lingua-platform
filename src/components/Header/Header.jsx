@@ -1,10 +1,14 @@
 import { NavLink } from "react-router";
 import ukraine from "../../../public/images/ukraine (2).svg";
 import styles from './Header.module.css';
-import { useNavigate } from "react-router";
+import { useState } from "react";
+import AuthModal from "../AuthModal/AuthModal"; 
+import RegisterForm from "../RegisterForm/RegisterForm";
 
 const Header = () => {
-    const navigate = useNavigate()
+   
+    const [isRegisterlOpen, setIsRegisterOpen] = useState(false);
+    const [isLoginOpen, setIsLoginOpen] = useState(false);
     return (
         <header className={styles.header}>
             <div className={styles.logo}>
@@ -16,11 +20,16 @@ const Header = () => {
                 <NavLink to='/teachers' className={({ isActive }) => isActive ? styles.active : ''}>Teachers</NavLink>
             </nav>
             <div className={styles.blockbutton}>
-                <button type="button" className={styles.login} onClick={() => navigate('/login')}>LogIn
+                <button type="button" className={styles.login} onClick={() => setIsModalOpen(true)}>LogIn
                     <img src="/public/images/log-in-01.png" alt="Login" className={styles.icon } /></button>
-                <button type="button" className={styles.button} onClick={() => navigate('/registration')}>Registration</button>
+                <button type="button" className={styles.button} onClick={() => setIsRegisterOpen(true)}>Registration</button>
                 
             </div>
+            {isRegisterlOpen && (
+                <AuthModal onClose={() => setIsRegisterOpen(false)}>
+                    <RegisterForm/>
+                </AuthModal>
+         )};
         </header>
     );
 };
