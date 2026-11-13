@@ -31,7 +31,7 @@ function RegisterForm() {
     const onSubmit = async (data) => {
         try {
             const user = await registerUser(data.name, data.email, data.password);
-            console.log(user);
+            
         } catch (error) {
             console.error(error);
         }

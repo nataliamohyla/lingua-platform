@@ -4,6 +4,7 @@ import styles from './Header.module.css';
 import { useState } from "react";
 import AuthModal from "../AuthModal/AuthModal"; 
 import RegisterForm from "../RegisterForm/RegisterForm";
+import LoginForm from "../LoginForm/LoginForm";
 
 const Header = () => {
    
@@ -20,7 +21,7 @@ const Header = () => {
                 <NavLink to='/teachers' className={({ isActive }) => isActive ? styles.active : ''}>Teachers</NavLink>
             </nav>
             <div className={styles.blockbutton}>
-                <button type="button" className={styles.login} onClick={() => setIsModalOpen(true)}>LogIn
+                <button type="button" className={styles.login} onClick={() => setIsLoginOpen(true)}>LogIn
                     <img src="/public/images/log-in-01.png" alt="Login" className={styles.icon } /></button>
                 <button type="button" className={styles.button} onClick={() => setIsRegisterOpen(true)}>Registration</button>
                 
@@ -29,7 +30,12 @@ const Header = () => {
                 <AuthModal onClose={() => setIsRegisterOpen(false)}>
                     <RegisterForm/>
                 </AuthModal>
-         )};
+            )}
+            {isLoginOpen && (
+                <AuthModal onClose={() => setIsLoginOpen(false)}>
+                    <LoginForm/>
+                </AuthModal>
+            )}
         </header>
     );
 };
