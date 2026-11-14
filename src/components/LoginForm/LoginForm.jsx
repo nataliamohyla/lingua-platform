@@ -3,6 +3,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import styles from "./LoginForm.module.css";
 import { loginUser } from "../../firebase/auth";
+import { useNavigate } from "react-router";
 
 const schema = yup.object({
     email: yup
@@ -15,7 +16,9 @@ const schema = yup.object({
         .min(6, "Password mus be at least 6 characters")
         .required("Pasword is required"),
 });
-function LoginForm() {
+
+function LoginForm({onClose}) {
+        const navigate = useNavigate();
     const { register,
         handleSubmit,
         formState: { errors },
@@ -25,11 +28,14 @@ function LoginForm() {
     const onSubmit = async (data) => {
         try {
             const user = await loginUser(data.email, data.password);
-            console.log("logged in user", user);
+            console.log("logged in user");
+            onClose();
+            navigate("/user");
         } catch (error) {
             console.error(error);
         }
     };
+
     return (
         <form onSubmit={handleSubmit(onSubmit)} className={styles.form} noValidate>
             <div className={styles.content}>

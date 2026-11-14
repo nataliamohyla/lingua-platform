@@ -3,6 +3,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import registerUser from "../../firebase/auth";
 import style from "./RegisterForm.module.css";
+import { useNavigate } from "react-router";
 
 
 const schema = yup.object({
@@ -20,7 +21,8 @@ const schema = yup.object({
         .required("Password is required"),
 });
 
-function RegisterForm() {
+function RegisterForm({ onClose} ) {
+    const navigate = useNavigate();
     const {
         register,
         handleSubmit,
@@ -31,7 +33,8 @@ function RegisterForm() {
     const onSubmit = async (data) => {
         try {
             const user = await registerUser(data.name, data.email, data.password);
-            
+            onClose();
+            navigate("/user");
         } catch (error) {
             console.error(error);
         }

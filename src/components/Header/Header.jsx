@@ -1,15 +1,25 @@
 import { NavLink } from "react-router";
-import ukraine from "../../../public/images/ukraine (2).svg";
-import styles from './Header.module.css';
-import { useState } from "react";
-import AuthModal from "../AuthModal/AuthModal"; 
-import RegisterForm from "../RegisterForm/RegisterForm";
-import LoginForm from "../LoginForm/LoginForm";
 
-const Header = () => {
-   
-    const [isRegisterlOpen, setIsRegisterOpen] = useState(false);
-    const [isLoginOpen, setIsLoginOpen] = useState(false);
+import styles from "./Header.module.css";
+
+import { useAuth } from "../../context/AuthContext";
+import { useNavigate } from "react-router";
+import { logoutUser } from "../../firebase/auth";
+
+
+const Header = ({ openLoginModal, openRegisterModal }) => {
+    const navigate = useNavigate();
+    const { user, loading } = useAuth();
+  ''
+     const handleLogout = async () => {
+        try {
+            await logoutUser();
+            navigate("/");
+        } catch (error) {
+            console.error(error);
+        }
+        
+    };
     return (
         <header className={styles.header}>
             <div className={styles.logo}>
@@ -21,21 +31,26 @@ const Header = () => {
                 <NavLink to='/teachers' className={({ isActive }) => isActive ? styles.active : ''}>Teachers</NavLink>
             </nav>
             <div className={styles.blockbutton}>
-                <button type="button" className={styles.login} onClick={() => setIsLoginOpen(true)}>LogIn
-                    <img src="/public/images/log-in-01.png" alt="Login" className={styles.icon } /></button>
-                <button type="button" className={styles.button} onClick={() => setIsRegisterOpen(true)}>Registration</button>
-                
+                {!user ? (
+                    <>
+                     <button type="button" className={styles.login} onClick={openLoginModal}>LogIn
+                            <img src="/public/images/log-in-01.png" alt="Login" className={styles.icon} /></button> 
+                    <button type="button" className={styles.button} onClick={openRegisterModal}>Registration</button>    
+                    </>
+                ) : (
+                        <>
+                            <h3>Hello,{user.displayName}</h3>
+                            
+                                <NavLink to='/user' className={({ isActive }) => isActive ? styles.active : ''}>Favorite</NavLink>
+                            
+                            
+                            <button type="button"  onClick={handleLogout} className={ styles.button}>Log Out</button>
+                        </>
+                )
+            }
+  
             </div>
-            {isRegisterlOpen && (
-                <AuthModal onClose={() => setIsRegisterOpen(false)}>
-                    <RegisterForm/>
-                </AuthModal>
-            )}
-            {isLoginOpen && (
-                <AuthModal onClose={() => setIsLoginOpen(false)}>
-                    <LoginForm/>
-                </AuthModal>
-            )}
+          
         </header>
     );
 };

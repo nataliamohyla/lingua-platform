@@ -1,11 +1,11 @@
 import TeachersList from "../../components/TeachersList/TeachersList.jsx";
 
-import styles from "./TeachersPage.module.css";
 
-function TeachersPage() {
+
+function TeachersPage({openLoginModal}) {
     return (
         <main>
-            <TeachersList />
+            <TeachersList openLoginModal={openLoginModal} />
         </main>
     );
 };

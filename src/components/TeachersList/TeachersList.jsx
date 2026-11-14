@@ -5,7 +5,7 @@ import { Link } from "react-router";
 import TeacherCard from "../TeacherCard/TeacherCard.jsx";
 import FilterPanel from "../FilterPanel/FilterPanel.jsx";
 
-function TeachersList() {
+function TeachersList({openLoginModal}) {
   const [teachers, setTeachers] = useState([]);
   const [visibleTeachers, setVisibleTeachers] = useState(3)
      const [filters, setFilters] = useState({
@@ -55,7 +55,7 @@ return (
     </h2>
   ) : (
     filteredTeachers.slice(0, visibleTeachers).map((teacher) => (
-      <TeacherCard key={teacher.id} teacher={teacher} />
+      <TeacherCard key={teacher.id} teacher={teacher} openLoginModal={openLoginModal} />
     ))
   )}
 

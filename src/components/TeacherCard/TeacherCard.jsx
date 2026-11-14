@@ -1,10 +1,21 @@
 import { useState } from "react";
 import styles from "./TeacherCard.module.css";
+import { useAuth } from "../../context/AuthContext";
+import { useFavorites } from "../../context/FavoritesContext";
 
-
-function TeacherCard({ teacher }) {
-   
-    const [isExpanded, setIsExpanded] = useState(false);  
+function TeacherCard({ teacher, openLoginModal }) {
+  const { user } = useAuth();
+  const { favorites, toggleFavorite } = useFavorites();
+  const [isExpanded, setIsExpanded] = useState(false); 
+  const isFavorite = favorites.some((item) => item.id === teacher.id);
+  
+  const handleFavoriteClick = () => {
+    if (!user) {
+      openLoginModal();
+      return;
+    }
+    toggleFavorite(teacher);
+  }
 
     return (
         <article className={styles.item}>
@@ -33,10 +44,11 @@ function TeacherCard({ teacher }) {
                         </div>
                         <button
                           type="button"
-                          className={styles.favoriteButton}
+                           className={styles.favoriteButton}
+                           onClick={handleFavoriteClick}
                           aria-label="Add teacher to favorites"
                         >
-                          ♡
+                          {isFavorite ?   "❤️" :  "♡"}
                         </button>
                       </div>
                       <p>
