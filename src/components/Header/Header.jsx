@@ -23,8 +23,8 @@ const Header = ({ openLoginModal, openRegisterModal }) => {
     return (
         <header className={styles.header}>
             <div className={styles.logo}>
-                <img src='/public/images/ukraine (2).svg' alt="Logo" className={styles.ukraine} />
-                <img src="/public/images/LearnLingo.svg" alt="Learnlingo" className={styles.lingo} />
+                <img src='/images/ukraine (2).svg' alt="Logo" className={styles.ukraine} />
+                <img src="/images/LearnLingo.svg" alt="Learnlingo" className={styles.lingo} />
             </div>
             <nav className={styles.nav}>
                 <NavLink to='/' className={({ isActive }) => isActive ? styles.active : ''}>Home</NavLink>
@@ -34,7 +34,7 @@ const Header = ({ openLoginModal, openRegisterModal }) => {
                 {!user ? (
                     <>
                      <button type="button" className={styles.login} onClick={openLoginModal}>LogIn
-                            <img src="/public/images/log-in-01.png" alt="Login" className={styles.icon} /></button> 
+                            <img src="/images/log-in-01.png" alt="Login" className={styles.icon} /></button> 
                     <button type="button" className={styles.button} onClick={openRegisterModal}>Registration</button>    
                     </>
                 ) : (
