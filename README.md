@@ -1,96 +1,31 @@
-# React + TypeScript + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
-
-Note: This will impact Vite dev & build performances.
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
-
-
-import { defineConfig } from "vite";
-import react, { reactCompilerPreset } from "@vitejs/plugin-react";
-import babel from "@rolldown/plugin-babel";
-
-export default defineConfig({
-  plugins: [
-    react(),
-    babel({ presets: [reactCompilerPreset()] }),
-  ],
-
-  server: {
-    watch: {
-      usePolling: true,
-      interval: 100,
-    },
-  },
-});
+LearnLingo
+LearnLingo is an online language learning platform that helps students find teachers and choose a tutor based on their learning goals, language preferences, and budget.
+The application provides a teacher directory, filtering options, user authentication, a personal favorites list, and a trial lesson booking form.
+Features
+Teacher Directory — Browse available language teachers and view their profiles, experience, ratings, lesson information, and reviews.
+Filtering — Find teachers by language, proficiency level, and hourly price.
+Load More — Load additional teacher cards without navigating to another page.
+User Authentication — Register and log in using Firebase Authentication.
+Favorites — Add or remove teachers from a personal favorites list. Favorites are stored separately for each authenticated user in the browser's local storage.
+Teacher Profiles — Expand teacher cards to read more information about their experience, teaching conditions, and reviews.
+Trial Lesson Form — Open a booking form for a selected teacher, enter contact details, and choose a learning goal.
+Form Validation — Validate registration and booking forms using React Hook Form and Yup.
+Protected User Area — Access a personal page with saved favorite teachers.
+Technologies
+React — Building the user interface with reusable components and hooks.
+JavaScript — Application logic.
+Vite — Development server and build tool.
+React Router — Client-side routing.
+Firebase Authentication — User registration and authentication.
+Firebase Realtime Database — Storing and retrieving teacher data.
+React Hook Form — Form state management.
+Yup — Form validation.
+CSS Modules — Component-scoped styling.
+Current Project Status
+LearnLingo is a portfolio project developed to practice building a React application with authentication, database integration, reusable components, routing, and form validation.
+The trial lesson form currently demonstrates client-side validation and form submission handling. It does not yet create or store actual bookings in the database.
+Future Improvements
+Implement backend processing and storage of trial lesson bookings.
+Improve loading and error states.
+Add automated tests.
+Further improve responsive design and accessibility.
