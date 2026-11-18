@@ -2,12 +2,16 @@ import { useState } from "react";
 import styles from "./TeacherCard.module.css";
 import { useAuth } from "../../context/AuthContext";
 import { useFavorites } from "../../context/FavoritesContext";
+import BookForm from "../BookForm/BookForm";
+import AuthModal from "../AuthModal/AuthModal";
+
 
 function TeacherCard({ teacher, openLoginModal }) {
   const { user } = useAuth();
   const { favorites, toggleFavorite } = useFavorites();
   const [isExpanded, setIsExpanded] = useState(false); 
   const isFavorite = favorites.some((item) => item.id === teacher.id);
+  const [isBookOpen, setIsBookOpen] = useState(false);
   
   const handleFavoriteClick = () => {
     if (!user) {
@@ -17,9 +21,10 @@ function TeacherCard({ teacher, openLoginModal }) {
     toggleFavorite(teacher);
   }
 
-    return (
+  return (
+         <> 
         <article className={styles.item}>
-                   
+              
                     <img
                       src={teacher.avatar_url}
                       alt={`${teacher.name} ${teacher.surname}`}
@@ -50,7 +55,8 @@ function TeacherCard({ teacher, openLoginModal }) {
                         >
                           {isFavorite ?   "❤️" :  "♡"}
                         </button>
-                      </div>
+          </div>
+          
                       <p>
                         <span className={styles.label}>Speaks:</span>{" "}
                         {teacher.languages?.join(", ")}
@@ -63,8 +69,9 @@ function TeacherCard({ teacher, openLoginModal }) {
                         <span className={styles.label}>Conditions:</span>{" "}
                         {teacher.conditions?.join(", ")}
                     </p>
-                    
-         
+                 
+       
+           
           {isExpanded && (
   <div>
     <p>{teacher.experience}</p>
@@ -82,10 +89,11 @@ function TeacherCard({ teacher, openLoginModal }) {
         
         </div>
       ))}
-                  <button type="button" className={styles.bookbutton} >Book leson</button>
+                  <button type="button" className={styles.bookbutton} onClick={() => setIsBookOpen(true)}>Book trial lesson</button> 
     </div>
   </div>
-)}
+          )}
+          
  <ul className={styles.levels}>
                                 {teacher.levels?.map((level) => (
                                   <li key={level} className={styles.level}>
@@ -94,11 +102,19 @@ function TeacherCard({ teacher, openLoginModal }) {
                                 ))}
           </ul>
             <button onClick={() => setIsExpanded(!isExpanded)} className={styles.morebutton}>
-        {isExpanded ? "Read less" : "Read more"}
-            </button>
+               {isExpanded ? "Read less" : "Read more"}
+                </button>
             </div>
-  
- </article>
+      </article>
+       { isBookOpen && (
+      <AuthModal onClose={() => setIsBookOpen(false)}>
+        <BookForm
+          teacher={teacher}
+          onClose={() => setIsBookOpen(false)}
+        />
+      </AuthModal>
+    ) }
+        </> 
     );
 };
 export default TeacherCard;

@@ -38,13 +38,15 @@ const Header = ({ openLoginModal, openRegisterModal }) => {
                     <button type="button" className={styles.button} onClick={openRegisterModal}>Registration</button>    
                     </>
                 ) : (
-                        <>
-                            <h3>Hello,{user.displayName}</h3>
-                            
+                        < >
+                            <div className={styles.usernav}>
+                            <h4>Hello, {user.displayName}</h4>
+                            <nav className={styles.nav}>
                                 <NavLink to='/user' className={({ isActive }) => isActive ? styles.active : ''}>Favorite</NavLink>
-                            
-                            
-                            <button type="button"  onClick={handleLogout} className={ styles.button}>Log Out</button>
+                            </nav>
+                              </div>
+                                <button type="button" onClick={handleLogout} className={styles.button}>Log Out</button>
+                              
                         </>
                 )
             }

@@ -10,8 +10,8 @@ function UserPage() {
    
 
     return (
-        <main>
-        <div>
+        <main className={styles.page}>
+        <div >
             <h3>Your Favorites</h3>
             {favorites.length === 0 ? (
                 <>

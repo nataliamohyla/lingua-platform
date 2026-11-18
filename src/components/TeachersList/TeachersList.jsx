@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { getTeachers } from "../../services/teacersApi";
 import styles from "./TeachersList.module.css";
-import { Link } from "react-router";
 import TeacherCard from "../TeacherCard/TeacherCard.jsx";
 import FilterPanel from "../FilterPanel/FilterPanel.jsx";
 

@@ -67,5 +67,19 @@ font-weight: 700;
 font-size: 16px;
 line-height: 125%;
 color: #fff;
+}
+h4{
+    font-size: 16px;
+    font-weight: 80;
+    color: #ec540d;
+   margin-top: 4px; 
+}
+.usernav{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 56px;
+    margin-top: 8px;
+   
 
 }
